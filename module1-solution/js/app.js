@@ -1,15 +1,18 @@
 (function () {
     'use strict';
-
     angular.module('myFirstApp', [])
         .controller('LunchCheckController', LunchCheckController);
     LunchCheckController.$inject = ['$scope'];
+    var checkError;
     function LunchCheckController($scope) {
         $scope.items = "";
         $scope.output = function () {
+            checkError = false;
             var value = rateFood($scope.items);
             $scope.outputValue = value;
+            checkError ? $scope.errorValue = "Input Can not contail Empty Feilds" : $scope.errorValue = "";
             value == "Please enter data first" ? $scope.messageType = "danger" : $scope.messageType = "success";
+            console.log(value)
         }
     }
     function rateFood(string) {
@@ -26,9 +29,10 @@
         for(var i = 0; i <dishes.length; i++){
             if(dishes[i].trim().length == 0){
                 mealCount -= 1;
+                checkError = true;
             }
         }
-        return mealCount
+        return mealCount;
     }
 
 })();
