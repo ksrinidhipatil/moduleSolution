@@ -17,7 +17,7 @@
         var dishes = string.split(',');
         var mealCount =checkMealCount(dishes);
         if (mealCount <= 0) message = "Please enter data first";
-        else if(mealCount > 0 && mealCount < 3 ) message = "Enjoy!";
+        else if(mealCount > 0 && mealCount <= 3 ) message = "Enjoy!";
         else if(mealCount > 3) message = "TooMuch!";
         return message
     }
